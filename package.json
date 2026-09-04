@@ -21,7 +21,7 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
-    "type": "commonjs",
+    "type": "module",
     "devDependencies": {
         "@eslint/js": "^10.0.1",
         "@types/node": "^26.4.0",
@@ -32,5 +32,9 @@
         "prettier": "3.9.6",
         "typescript": "npm:@typescript/typescript6@^6.0.2",
         "typescript-eslint": "^8.68.0"
+    },
+    "dependencies": {
+        "dotenv": "^17.4.2",
+        "express": "^5.2.1"
     }
 }

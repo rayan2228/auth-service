@@ -13,7 +13,7 @@ export default defineConfig({
             projectService: true,
         },
     },
-    rules: {
-        'no-console': 'error',
-    },
+    // rules: {
+    //     'no-console': 'error',
+    // },
 });

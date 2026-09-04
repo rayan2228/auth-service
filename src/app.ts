@@ -1,4 +1,28 @@
-import e from 'express';
+import e, { type NextFunction, type Request, type Response } from 'express';
+import type { HttpError } from 'http-errors';
+import { logger } from './config/logger.js';
+import createHttpError from 'http-errors';
 const app = e();
+
+app.get('/', (req, res, next) => {
+    const err = createHttpError(401);
+    next(err);
+});
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
+    logger.error(err.message);
+    const statusCode = err.statusCode || 500;
+    res.status(statusCode).json({
+        errors: [
+            {
+                type: err.name,
+                msg: err.message,
+                path: '',
+                location: '',
+            },
+        ],
+    });
+});
 
 export { app };

@@ -1,7 +1,7 @@
 import e, { type NextFunction, type Request, type Response } from 'express';
 import type { HttpError } from 'http-errors';
-import { logger } from './config/logger.js';
 import createHttpError from 'http-errors';
+import { logger } from './config/logger.js';
 const app = e();
 
 app.get('/', (req, res, next) => {

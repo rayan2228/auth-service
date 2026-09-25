@@ -12,6 +12,7 @@
     "scripts": {
         "dev": "nodemon --exec tsx ./src/server.ts",
         "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+        "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
         "format:check": "npx prettier . --check",
         "format:fix": "npx prettier . --write",
         "lint:check": "npx eslint .",
@@ -28,6 +29,7 @@
         "@types/express": "^5.0.6",
         "@types/jest": "^30.0.0",
         "@types/node": "^26.4.0",
+        "@types/supertest": "^7.2.1",
         "@typescript/native": "npm:typescript@^7.0.2",
         "eslint": "^10.9.1",
         "husky": "^9.1.7",
@@ -45,6 +47,7 @@
         "dotenv": "^17.4.2",
         "express": "^5.2.1",
         "http-errors": "^2.0.1",
+        "supertest": "^7.2.2",
         "winston": "^3.19.0"
     }
 }

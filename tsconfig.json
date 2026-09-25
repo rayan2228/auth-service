@@ -1,12 +1,13 @@
 {
     "compilerOptions": {
-        "rootDir": "./src",
+        "rootDir": ".",
         "outDir": "./dist",
 
         "module": "NodeNext",
+        "moduleResolution": "NodeNext",
         "target": "ESNext",
 
-        "types": ["node"],
+        "types": ["node", "jest"],
 
         "sourceMap": true,
         "declaration": true,
@@ -23,5 +24,7 @@
         "moduleDetection": "force",
 
         "skipLibCheck": true
-    }
+    },
+    "include": ["src/**/*.ts", "tests/**/*.ts"],
+    "exclude": ["node_modules", "dist"]
 }

@@ -13,6 +13,9 @@
         "declaration": true,
         "declarationMap": true,
 
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+
         "noUncheckedIndexedAccess": true,
         "exactOptionalPropertyTypes": true,
 
@@ -22,6 +25,7 @@
         "isolatedModules": true,
         "noUncheckedSideEffectImports": true,
         "moduleDetection": "force",
+        "strictPropertyInitialization": false,
 
         "skipLibCheck": true
     },

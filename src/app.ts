@@ -6,6 +6,7 @@ import { logger } from './config/logger.js';
 import authRouter from './routes/auth.js';
 
 const app = e();
+app.use(e.json());
 
 app.get('/', (req, res, next) => {
     const err = createHttpError(401);

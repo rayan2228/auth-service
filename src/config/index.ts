@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
 import path from 'node:path';
-import { requiredEnv } from '../utils/requiredEnv.js';
+import { requiredEnv } from '../utils/index.js';
 
 config({
     path: path.join(import.meta.dirname, `../../.env.${process.env.NODE_ENV}`),

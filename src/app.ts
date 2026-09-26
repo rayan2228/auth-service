@@ -1,8 +1,10 @@
 import e, { type NextFunction, type Request, type Response } from 'express';
 import type { HttpError } from 'http-errors';
 import createHttpError from 'http-errors';
+import 'reflect-metadata';
 import { logger } from './config/logger.js';
 import authRouter from './routes/auth.js';
+
 const app = e();
 
 app.get('/', (req, res, next) => {

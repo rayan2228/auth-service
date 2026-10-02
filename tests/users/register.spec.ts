@@ -75,6 +75,8 @@ describe('POST /auth/register', () => {
             expect(users[0]?.email).toBe(userData.email);
             expect(users[0]?.password).toBe(userData.password);
         });
+
+        it.todo('should return an id of the created user');
     });
     describe('Fields are missing', () => {});
 });

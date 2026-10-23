@@ -10,7 +10,7 @@ config({
 export const Config = Object.freeze({
     PORT: requiredEnv('PORT'),
     NODE_ENV: requiredEnv('NODE_ENV'),
-
+    JWT_REFRESH_TOKEN_SECRET_KEY: requiredEnv('JWT_REFRESH_TOKEN_SECRET_KEY'),
     DB_HOST: requiredEnv('DB_HOST'),
     DB_PORT: requiredEnv('DB_PORT'),
     DB_USERNAME: requiredEnv('DB_USERNAME'),

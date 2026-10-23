@@ -6,6 +6,7 @@ import { Roles } from '../../src/constants/index.js';
 import { AppDataSource } from '../../src/data-source.js';
 import { User } from '../../src/entities/User.js';
 import { validationErrorResponseSchema } from '../../src/validators/register.js';
+import { isJwt } from '../../src/utils/index.js';
 
 const validUser = {
     firstName: 'Rayan',
@@ -130,6 +131,37 @@ describe('POST /auth/register', () => {
                 );
             },
         );
+    });
+
+    describe('tokens', () => {
+        interface Headers {
+            ['set-cookie']: string[];
+        }
+        it('should return the access token and refresh token inside a cookie', async () => {
+            const response = await registerUser();
+
+            const cookies =
+                (response.headers as unknown as Headers)['set-cookie'] ?? [];
+
+            let accessToken: string | undefined;
+            let refreshToken: string | undefined;
+
+            cookies.forEach((cookie: string) => {
+                if (cookie.startsWith('accessToken=')) {
+                    accessToken = cookie.split(';')[0]?.split('=')[1];
+                }
+
+                if (cookie.startsWith('refreshToken=')) {
+                    refreshToken = cookie.split(';')[0]?.split('=')[1];
+                }
+            });
+
+            expect(accessToken).toBeDefined();
+            expect(isJwt(accessToken)).toBeTruthy();
+
+            expect(refreshToken).toBeDefined();
+            expect(isJwt(refreshToken)).toBeTruthy();
+        });
     });
 
     describe('Given invalid field values', () => {

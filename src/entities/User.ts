@@ -3,15 +3,15 @@ import { Roles } from '../constants/index.js';
 
 @Entity()
 export class User {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('increment', { type: 'int' })
     id: number;
-    @Column()
+    @Column({ type: 'varchar' })
     firstName: string;
-    @Column()
+    @Column({ type: 'varchar' })
     lastName: string;
-    @Column({ unique: true })
+    @Column({ type: 'varchar', unique: true })
     email: string;
-    @Column()
+    @Column({ type: 'varchar' })
     password: string;
     @Column({
         type: 'enum',

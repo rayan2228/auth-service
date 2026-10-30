@@ -7,6 +7,7 @@ import { AppDataSource } from '../../src/data-source.js';
 import { User } from '../../src/entities/User.js';
 import { validationErrorResponseSchema } from '../../src/validators/register.js';
 import { isJwt } from '../../src/utils/index.js';
+import { RefreshToken } from '../../src/entities/RefreshToken.js';
 
 const validUser = {
     firstName: 'Rayan',
@@ -161,6 +162,23 @@ describe('POST /auth/register', () => {
 
             expect(refreshToken).toBeDefined();
             expect(isJwt(refreshToken)).toBeTruthy();
+        });
+
+        it('should  store the refresh token in the database', async () => {
+            const response = await registerUser();
+
+            const refreshTokenRepo = connection.getRepository(RefreshToken);
+            const body = response.body as {
+                id: string;
+            };
+
+            const tokens = await refreshTokenRepo
+                .createQueryBuilder('refreshToken')
+                .where('refreshToken.userId = :userId', {
+                    userId: body.id,
+                })
+                .getMany();
+            expect(tokens).toHaveLength(1);
         });
     });
 

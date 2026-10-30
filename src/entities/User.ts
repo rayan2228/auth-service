@@ -1,4 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    Column,
+    CreateDateColumn,
+    Entity,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
+} from 'typeorm';
 import { Roles } from '../constants/index.js';
 
 @Entity()
@@ -19,4 +25,16 @@ export class User {
         default: Roles.CUSTOMER,
     })
     role: Roles;
+    @CreateDateColumn({
+        type: 'timestamp',
+        default: () => 'CURRENT_TIMESTAMP(6)',
+    })
+    createdAt: Date;
+
+    @UpdateDateColumn({
+        type: 'timestamp',
+        default: () => 'CURRENT_TIMESTAMP(6)',
+        onUpdate: 'CURRENT_TIMESTAMP(6)',
+    })
+    updatedAt: Date;
 }

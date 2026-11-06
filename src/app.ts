@@ -12,7 +12,7 @@ app.get('/', (req, res, next) => {
     next(err);
 });
 
-app.use('/auth', authRouter);
+app.use('/api/v1/auth', authRouter);
 
 app.use(errorHandler);
 

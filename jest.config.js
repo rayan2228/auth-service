@@ -6,6 +6,7 @@ const presetConfig = createDefaultEsmPreset();
 export default {
     ...presetConfig,
     testEnvironment: 'node',
+    maxWorkers:1,
     extensionsToTreatAsEsm: ['.ts'],
     // Allow ESM-style ".js" specifiers in TS sources to resolve to the ".ts" files
     moduleNameMapper: {

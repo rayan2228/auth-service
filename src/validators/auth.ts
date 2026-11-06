@@ -27,6 +27,10 @@ export const registerSchema = z.object({
                 'Password must contain at least one special character (!@#$%^&*?).',
         }),
 });
+export const loginSchema = z.object({
+    email: z.email({ message: 'Please provide a valid email address.' }),
+    password: z.string().min(1, { message: 'Password is required.' }),
+});
 
 export const validationErrorResponseSchema = z.object({
     success: z.boolean(),

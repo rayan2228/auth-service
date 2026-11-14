@@ -10,5 +10,11 @@ interface UserData {
 interface RegisterUserRequest extends Request {
     body: UserData;
 }
+interface AuthRequest extends Request {
+    auth: {
+        sub: string;
+        role: string;
+    };
+}
 
-export type { RegisterUserRequest, UserData };
+export type { AuthRequest, RegisterUserRequest, UserData };

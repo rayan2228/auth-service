@@ -1,7 +1,5 @@
 import bcrypt from 'bcryptjs';
-import request from 'supertest';
 import type { DataSource } from 'typeorm';
-import { app } from '../../src/app.js';
 import { Roles } from '../../src/constants/index.js';
 import { AppDataSource } from '../../src/data-source.js';
 import { RefreshToken } from '../../src/entities/RefreshToken.js';
@@ -9,17 +7,7 @@ import { User } from '../../src/entities/User.js';
 import { isJwt } from '../../src/utils/index.js';
 import { validationErrorResponseSchema } from '../../src/validators/auth.js';
 
-const validUser = {
-    firstName: 'Rayan',
-    lastName: 'Hossain',
-    email: 'rayan.cit.bd@gmail.com',
-    password: 'Pa$$w0rd',
-};
-
-type RegisterPayload = typeof validUser;
-
-export const registerUser = (payload: Partial<RegisterPayload> = validUser) =>
-    request(app).post('/auth/register').send(payload);
+import { registerUser, validUser } from './helpers.js';
 
 describe('POST /auth/register', () => {
     let connection: DataSource;

@@ -6,7 +6,7 @@ import { RefreshToken } from '../../src/entities/RefreshToken.js';
 import { User } from '../../src/entities/User.js';
 import { isJwt } from '../../src/utils/index.js';
 import { validationErrorResponseSchema } from '../../src/validators/auth.js';
-import { registerUser } from './register.spec.js';
+import { registerUser } from './helpers.js';
 const validUser = {
     email: 'rayan.cit.bd@gmail.com',
     password: 'Pa$$w0rd',

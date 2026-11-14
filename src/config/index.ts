@@ -16,4 +16,5 @@ export const Config = Object.freeze({
     DB_USERNAME: requiredEnv('DB_USERNAME'),
     DB_PASSWORD: requiredEnv('DB_PASSWORD'),
     DB_NAME: requiredEnv('DB_NAME'),
+    JWKS_URI: requiredEnv('JWKS_URI'),
 });

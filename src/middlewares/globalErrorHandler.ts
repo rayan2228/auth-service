@@ -10,8 +10,9 @@ export const errorHandler = (
     if (res.headersSent) {
         return next(err);
     }
-
-    const statusCode = createHttpError.isHttpError(err) ? err.statusCode : 500;
+    const statusCode = createHttpError.isHttpError(err)
+        ? err.statusCode || err.status
+        : 500;
 
     const errors = (
         err as Error & {

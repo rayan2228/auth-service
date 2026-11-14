@@ -1,8 +1,8 @@
-import type { NextFunction, Response } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 import createHttpError from 'http-errors';
 import type { JwtPayload } from 'jsonwebtoken';
 import { UserService } from '../services/UserService.js';
-import type { RegisterUserRequest } from '../types/index.js';
+import type { AuthRequest, RegisterUserRequest } from '../types/index.js';
 import { loginSchema, registerSchema } from '../validators/auth.js';
 
 import { AppDataSource } from '../data-source.js';
@@ -84,7 +84,7 @@ export class AuthController {
             id: user.id,
         });
     }
-    async login(req: RegisterUserRequest, res: Response, next: NextFunction) {
+    async login(req: Request, res: Response, next: NextFunction) {
         const validationResult = loginSchema.safeParse(req.body);
 
         if (!validationResult.success) {
@@ -102,7 +102,7 @@ export class AuthController {
 
         const { email, password } = validationResult.data;
 
-        const user = await this.userService.findByByEmail(email);
+        const user = await this.userService.findByEmail(email);
         if (!user) {
             const error = createHttpError(
                 401,
@@ -162,5 +162,13 @@ export class AuthController {
             message: 'User logged successfully.',
             id: user.id,
         });
+    }
+    async me(req: AuthRequest, res: Response, next: NextFunction) {
+        try {
+            const user = await this.userService.findById(Number(req.auth.sub));
+            return res.json({ ...user, password: undefined });
+        } catch (err) {
+            return next(err);
+        }
     }
 }

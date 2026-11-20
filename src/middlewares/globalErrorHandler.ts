@@ -1,8 +1,8 @@
 import type { NextFunction, Request, Response } from 'express';
-import createHttpError from 'http-errors';
+import { type HttpError } from 'http-errors';
 
 export const errorHandler = (
-    err: Error,
+    err: HttpError,
     req: Request,
     res: Response,
     next: NextFunction,
@@ -10,10 +10,8 @@ export const errorHandler = (
     if (res.headersSent) {
         return next(err);
     }
-    const statusCode = createHttpError.isHttpError(err)
-        ? err.statusCode || err.status
-        : 500;
 
+    const statusCode = err.statusCode || err.status || 500;
     const errors = (
         err as Error & {
             errors?: { field: string; message: string }[];
